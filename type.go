@@ -63,6 +63,8 @@ type Adjustment struct {
 	FromEnd CustomTime `json:"fromEnd"`
 
 	ToStart CustomTime `json:"toStart"`
+
+	ToEnd CustomTime `json:"toEnd"`
 }
 
 type Special struct {
