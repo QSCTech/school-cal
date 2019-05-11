@@ -29,7 +29,7 @@ You can configure Calendar by delivering [CalendarOption](https://godoc.org/gith
 
 ### Data Sample
 
-```json
+```javascript
 {
 	"2015-2016": {
 		// 日期（实际上是时间，为了支持半天调课）使用 ISO 8601 标准便于解析。
