@@ -9,6 +9,7 @@ notifications: # 每次构建的时候是否通知，如果不想收到通知，
   on_failure: always
 
 go:
+- "1.11"
 - "1.12"
 
 install:
