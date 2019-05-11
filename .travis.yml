@@ -12,6 +12,7 @@ go:
 - "1.12"
 
 install:
+- go mod download
 - go build
 
 script:
