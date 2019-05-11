@@ -1,4 +1,4 @@
-package school_cal
+package schoolcal
 
 import (
 	"encoding/json"

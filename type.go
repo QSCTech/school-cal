@@ -1,4 +1,4 @@
-package school_cal
+package schoolcal
 
 type SchoolYear struct {
 	Start CustomTime `json:"start"`

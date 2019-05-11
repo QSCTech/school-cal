@@ -1,4 +1,4 @@
-package school_cal
+package schoolcal
 
 import (
 	"encoding/json"
@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	DefaultApiUrl        = "https://product.zjuqsc.com/schoolCal/backend-api/output/"
+	DefaultAPIURL        = "https://product.zjuqsc.com/schoolCal/backend-api/output/"
 	DefaultCacheDuration = time.Hour * 24
 )
 
@@ -27,7 +27,7 @@ type Calendar interface {
 }
 
 type CalendarOptions struct {
-	ApiUrl             string
+	APIURL             string
 	CacheDuration      time.Duration
 	InitErrorHandler   func(error)
 	UpdateErrorHandler func(error)
@@ -43,7 +43,7 @@ type calendar struct {
 
 func newCalendar() *calendar {
 	return &calendar{
-		apiAddr:            DefaultApiUrl,
+		apiAddr:            DefaultAPIURL,
 		cacheDuration:      DefaultCacheDuration,
 		initErrorHandler:   DefaultInitErrorHandler,
 		updateErrorHandler: DefaultUpdateErrorHandler,
@@ -95,8 +95,8 @@ func (cal *calendar) GetSchoolYears() map[string]*SchoolYear {
 func NewCalendar(option *CalendarOptions) Calendar {
 	calendar := newCalendar()
 	if option != nil {
-		if option.ApiUrl != "" {
-			calendar.apiAddr = option.ApiUrl
+		if option.APIURL != "" {
+			calendar.apiAddr = option.APIURL
 		}
 
 		if option.CacheDuration != 0 {
