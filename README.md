@@ -11,14 +11,18 @@ using go mod
 package main
 
 import (
-	"github.com/QSCTech/school-cal"
 	"encoding/json"
 	"fmt"
+	"github.com/QSCTech/school-cal"
 )
 
 func main() {
-	cal := school_cal.NewCalendar(nil)
+	cal := schoolcal.NewCalendar(nil)
 	data, _ := json.Marshal(cal.GetSchoolYears())
 	fmt.Println(string(data))
 }
 ```
+
+### Options
+
+You can configure Calendar by delivering [CalendarOption](https://godoc.org/github.com/QSCTech/school-cal#CalendarOptions) into NewCalendar
