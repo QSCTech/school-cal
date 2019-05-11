@@ -12,7 +12,7 @@ go:
 - "1.12"
 
 install:
-  go env
+- go env
 - go build
 
 script:
