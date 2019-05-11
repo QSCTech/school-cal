@@ -15,11 +15,11 @@ const (
 )
 
 func DefaultInitErrorHandler(err error) {
-	log.Fatalf("init error: %s", err.Error())
+	log.Fatalf("init error: %s\n", err.Error())
 }
 
 func DefaultUpdateErrorHandler(err error) {
-	log.Printf("update error: %s", err.Error())
+	log.Printf("update error: %s\n", err.Error())
 }
 
 type Calendar interface {
