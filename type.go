@@ -1,5 +1,6 @@
 package schoolcal
 
+// SchoolYear is struct to describe a school year in school calendar
 type SchoolYear struct {
 	Start CustomTime `json:"start"`
 
@@ -11,6 +12,7 @@ type SchoolYear struct {
 	Specials    []*Special    `json:"special"`
 }
 
+// Semesters is struct to describe all the semester in a school year
 type Semesters struct {
 	// SM：Summer Mini，夏季短学期
 	SM Semester `json:"SM"`
@@ -32,18 +34,21 @@ type Semesters struct {
 	ST Semester `json:"ST"`
 }
 
+// Semester is a struct to describe single semester
 type Semester struct {
 	Start              CustomTime `json:"start"`
 	End                CustomTime `json:"end"`
 	StartsWithWeekZero bool       `json:"startsWithWeekZero"`
 }
 
+// Holiday is a struct to describe single holiday
 type Holiday struct {
 	Name  string     `json:"name"`
 	Start CustomTime `json:"start"`
 	End   CustomTime `json:"end"`
 }
 
+// Adjustment is a struct to describe single adjustment
 type Adjustment struct {
 	//"term" 字段表示需要调整的课程，可针对小学期调课，“无筛选” 为兼容以前的调课逻辑，不对课程学期进行筛选。
 	// <option value="0">无筛选</option>
@@ -67,6 +72,8 @@ type Adjustment struct {
 	ToEnd CustomTime `json:"toEnd"`
 }
 
+// Special is a struct to describe single special
+// 特殊课程，比如行策
 type Special struct {
 	Code string `json:"code"`
 	// 课程周期 all:每周，odd：单周，even：双周

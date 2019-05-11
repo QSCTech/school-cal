@@ -10,26 +10,43 @@ import (
 )
 
 const (
-	DefaultAPIURL        = "https://product.zjuqsc.com/schoolCal/backend-api/output/"
+	// DefaultAPIURL is the default url of school calendar API
+	DefaultAPIURL = "https://product.zjuqsc.com/schoolCal/backend-api/output/"
+
+	// DefaultCacheDuration is the default duration of calendar data cache
 	DefaultCacheDuration = time.Hour * 24
 )
 
+// DefaultInitErrorHandler is the default error handler when calendar init;
 func DefaultInitErrorHandler(err error) {
 	log.Fatalf("init error: %s\n", err.Error())
 }
 
+// DefaultUpdateErrorHandler is the default error handler when calendar update;
 func DefaultUpdateErrorHandler(err error) {
 	log.Printf("update error: %s\n", err.Error())
 }
 
+// Calendar is a interface to control school years
 type Calendar interface {
+	// GetSchoolYears is a method to get school years
 	GetSchoolYears() map[string]*SchoolYear
 }
 
+// CalendarOptions is a struct to construct calendar
 type CalendarOptions struct {
-	APIURL             string
-	CacheDuration      time.Duration
-	InitErrorHandler   func(error)
+	// APIURL is the URL of school calendar API
+	APIURL string
+
+	// CacheDuration is the duration of calendar data cache
+	CacheDuration time.Duration
+
+	// InitErrorHandler is the error handler when calendar init
+	// should exit when some error occurred, otherwise you will get nil school years
+	InitErrorHandler func(error)
+
+	// UpdateErrorHandler is the error handler when calendar update
+	// should just log the error
 	UpdateErrorHandler func(error)
 }
 
@@ -88,10 +105,12 @@ func (cal *calendar) update(errHandler func(err error)) {
 	cal.schoolYears.Store(schoolYears)
 }
 
+// GetSchoolYears is a method to get school years
 func (cal *calendar) GetSchoolYears() map[string]*SchoolYear {
 	return cal.schoolYears.Load().(map[string]*SchoolYear)
 }
 
+// NewCalendar is a method to construct a new Calender
 func NewCalendar(option *CalendarOptions) Calendar {
 	calendar := newCalendar()
 	if option != nil {
